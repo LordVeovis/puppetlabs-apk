@@ -2,8 +2,8 @@
 require 'spec_helper'
 
 describe Puppet::Type.type(:package).provider(:apk) do
-  let (:resource) { Puppet::Type.type(:package).new(:name => 'mypackage', :ensure => :installed, :provider => :apk) }
-  let (:provider) { resource.provider }
+  let(:resource) { Puppet::Type.type(:package).new(name: 'mypackage', ensure: :installed, provider: :apk) }
+  let(:provider) { resource.provider }
 
   [:install, :uninstall, :latest, :query, :update].each do |method|
     it "should have a method called #{method}" do

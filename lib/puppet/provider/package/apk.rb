@@ -1,6 +1,6 @@
 require 'puppet/provider/package'
 
-Puppet::Type.type(:package).provide :apk, :parent => ::Puppet::Provider::Package do
+Puppet::Type.type(:package).provide :apk, parent: ::Puppet::Provider::Package do
   desc "System packages on Alpine linux via `apk`.
 
   This provider supports the `install_options` attribute, which allows command-line flags to be passed to apk.
