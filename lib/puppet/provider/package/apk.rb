@@ -40,7 +40,7 @@ Puppet::Type.type(:package).provide :apk, parent: ::Puppet::Provider::Package do
 
   def query
     self.class.instances.each do |provider|
-      return provider.properties if name.downcase == provider.name.downcase
+      return provider.properties if name.casecmp?(provider.name)
     end
     return
   end

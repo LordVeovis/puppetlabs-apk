@@ -29,12 +29,12 @@ describe Puppet::Type.type(:package).provider(:apk) do
 
   it 'calls apk info twice with different arguments when listing packages' do
     described_class.expects(:apk).with('info', '-v').returns('')
-    described_class.expects(:apk).with('info',).returns('')
+    described_class.expects(:apk).with('info').returns('')
     described_class.expects(:warning).never
     described_class.instances
   end
 
-  it 'calls apk info twice with different arguments when listing packages' do
+  it 'calls apk info twice with different arguments when listing packages2' do
     described_class.expects(:apk).with('info', '-v').returns <<-OUTPUT
 ncurses-terminfo-6.0-r6
 ncurses-libs-6.0-r6
@@ -44,7 +44,7 @@ openssl-1.0.2f-r0
 ca-certificates-20160104-r2
 libssh2-1.6.0-r0
     OUTPUT
-    described_class.expects(:apk).with('info',).returns <<-OUTPUT
+    described_class.expects(:apk).with('info').returns <<-OUTPUT
 ncurses-terminfo
 ncurses-libs
 readline
@@ -54,9 +54,9 @@ ca-certificates
 libssh2
     OUTPUT
     described_class.expects(:warning).never
-    instances = described_class.instances.map { |p| {name: p.get(:name), ensure: p.get(:ensure) }}
+    instances = described_class.instances.map { |p| { name: p.get(:name), ensure: p.get(:ensure) } }
     expect(instances.size).to eq(7)
-    expect(instances[0]).to eq({:name => 'ncurses-terminfo', :ensure => '6.0-r6'})
+    expect(instances[0]).to eq(name: 'ncurses-terminfo', ensure: '6.0-r6')
   end
 
   it 'does not output false package resources for WARNINGS' do
@@ -71,7 +71,7 @@ ncurses-terminfo
 ncurses-libs
     OUTPUT
     described_class.expects(:warning).never
-    instances = described_class.instances.map { |p| {name: p.get(:name), ensure: p.get(:ensure) }}
+    instances = described_class.instances.map { |p| { name: p.get(:name), ensure: p.get(:ensure) } }
     expect(instances.size).to eq(2)
     expect(instances[0]).to eq(name: 'ncurses-terminfo', ensure: '6.0-r6')
   end
