@@ -8,12 +8,20 @@
   "project_page": "https://github.com/puppetlabs/puppetlabs-apk",
   "issues_url": "https://github.com/puppetlabs/puppetlabs-apk/issues",
   "dependencies": [
-  
+
   ],
-  "data_provider": null,
   "operatingsystem_support": [
     {
       "operatingsystem": "Alpine"
     }
-  ]
+  ],
+  "requirements": [
+    {
+      "name": "puppet",
+      "version_requirement": ">= 4.10.0 < 7.0.0"
+    }
+  ],
+  "pdk-version": "1.11.1",
+  "template-url": "pdk-default#1.11.1",
+  "template-ref": "1.11.1-0-g2ff8c24"
 }
