@@ -9,10 +9,10 @@ Puppet::Type.type(:package).provide :apk, :parent => ::Puppet::Provider::Package
 
   has_feature :installable, :uninstallable, :upgradeable, :versionable, :install_options
 
-  commands :apk => 'apk'
+  commands apk: 'apk'
 
-  confine :operatingsystem => [:alpine]
-  defaultfor :operatingsystem => :alpine
+  confine operatingsystem: [:alpine]
+  defaultfor operatingsystem: :alpine
 
   def self.instances
     # apk info doesn't have output that makes parsing for the version easy
@@ -26,11 +26,11 @@ Puppet::Type.type(:package).provide :apk, :parent => ::Puppet::Provider::Package
     packages_with_versions = remove_warnings(apk('info', '-v').split("\n"))
     packages.collect.with_index do |package, index|
       version = packages_with_versions[index].gsub("#{package}-", '')
-      new({
+      new(
         name: package,
         ensure: version,
         provider: name,
-      })
+      )
     end
   end
 
@@ -48,14 +48,14 @@ Puppet::Type.type(:package).provide :apk, :parent => ::Puppet::Provider::Package
   def latest
     details = apk('info', name, '--no-cache').split("\n")
     details.each do |line|
-      unless line.match(/^fetch/)
+      unless line.match(%r{^fetch})
         parts = line.split(' ')
         return parts.first.gsub("#{name}-", '')
       end
     end
   end
 
-  def install(options=[])
+  def install(options = [])
     args = ['add']
     args += install_options if @resource[:install_options]
     args += options
@@ -72,6 +72,7 @@ Puppet::Type.type(:package).provide :apk, :parent => ::Puppet::Provider::Package
   end
 
   private
+
   def install_options
     join_options(@resource[:install_options])
   end
