@@ -1,7 +1,7 @@
 [![Puppet
 Forge](http://img.shields.io/puppetforge/v/puppetlabs/apk.svg)](https://forge.puppetlabs.com/puppetlabs/apk)
 [![Build
-Status](https://travis-ci.org/puppetlabs/puppetlabs-apk.svg?branch=master)](https://travis-ci.org/puppetlabs/puppetlabs-apk)
+Status](https://travis-ci.org/LordVeovis/puppetlabs-apk.svg?branch=master)](https://travis-ci.org/LordVeovis/puppetlabs-apk)
 
 1. [Overview](#overview)
 2. [Module Description - What the module does and why it is useful](#module-description)
