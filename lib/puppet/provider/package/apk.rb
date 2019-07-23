@@ -42,7 +42,7 @@ Puppet::Type.type(:package).provide :apk, parent: ::Puppet::Provider::Package do
     self.class.instances.each do |provider|
       return provider.properties if name.casecmp?(provider.name)
     end
-    return nil
+    nil
   end
 
   def latest
