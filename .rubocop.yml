@@ -124,3 +124,6 @@ Style/IfUnlessModifier:
   Enabled: false
 Style/SymbolProc:
   Enabled: false
+# apk.rb:51
+Performance/RedundantMatch:
+  Enabled: false
